@@ -1,0 +1,196 @@
+/* Style the tab buttons */
+body {
+    background-color: black;
+}
+
+*,
+body {
+    transition: all 0.3s ease;
+}
+
+.tablink {
+    background-color: #555;
+    color: azure;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 20%;
+    overflow: hidden;
+    height: 4em;
+}
+
+/* Change background color of buttons on hover */
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Set default styles for tab content */
+.tabcontent {
+    color: azure;
+    padding: 50px;
+    display: none;
+    font-weight: bolder;
+    text-align: center;
+    height: fit-content;
+}
+
+.tabs,
+.conts {
+    display: block;
+}
+
+.conts {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+/* Style each tab content individually */
+#PassengerRegistration {
+    background-color: #08415C;
+}
+
+#Booking {
+    background-color: #388697;
+}
+
+#Cancellation {
+    background-color: #DB504A;
+}
+
+#Updation {
+    background-color: #0E8929;
+}
+
+#CarRegistration {
+    background-color: #E3B505;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,600,400);
+
+.text-holder {
+    color: #aaaaaa;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.button-holder {
+    padding-top: 100px;
+}
+
+.ajax-button {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
+    text-align: center;
+}
+
+.submitBtn1 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 40px;
+    background-color: #111111;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 17px;
+    cursor: pointer !important;
+    outline: none;
+}
+
+.submitBtn2 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 40px;
+    background-color: #111111;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 17px;
+    cursor: pointer !important;
+    outline: none;
+}
+
+.submitBtn1:hover {
+    background-color: #222222;
+}
+
+.submitBtn2:hover {
+    background-color: #222222;
+}
+
+.loading {
+    font-size: 0;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 15px;
+    padding: 0;
+    border: 3px solid #FFFFFF;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.0);
+    border-left: 3px solid rgba(255, 255, 255, 0.0);
+    background-color: transparent !important;
+    animation-name: rotateAnimation;
+    -webkit-animation-name: wk-rotateAnimation;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-delay: 0.2s;
+    -webkit-animation-delay: 0.2s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes wk-rotateAnimation {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.fa {
+    color: #ffffff;
+    font-size: 18px !important;
+    position: absolute;
+    top: 50%;
+    margin-left: -9px;
+    margin-top: -9px;
+    -webkit-transform: scaleX(0) !important;
+    transform: scaleX(0) !important;
+}
+
+.finish {
+    -webkit-transform: scaleX(1) !important;
+    transform: scaleX(1) !important;
+}
+
+.hide-loading {
+    opacity: 0;
+    -webkit-transform: rotate(0deg) !important;
+    transform: rotate(0deg) !important;
+    -webkit-transform: scale(0) !important;
+    transform: scale(0) !important;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'YAPS/css/index.css' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<div class="container">
+		<div class="msgs">
+			{% if flag == 1 %}
+			<div class="alert alert-success" role="alert">
+				Success: {{ msg }}
+			</div>
+			{% endif %}
+			{% if flag == 2 %}
+			<div class="alert alert-danger" role="alert">
+				Error: {{ msg }}
+			</div>
+			{% endif %}
+		</div>
+		<div class="tabs">
+			<button class="tablink" onclick="openTab('PassengerRegistration', this)">Passenger Registration</button>
+			<button class="tablink" onclick="openTab('Booking', this)">Booking</button>
+			<button class="tablink" onclick="openTab('Cancellation', this)">Cancellation</button>
+			<button class="tablink" onclick="openTab('Updation', this)">Updation</button>
+			<button class="tablink" onclick="openTab('CarRegistration', this)">Car Registration</button>
+		</div>
+
+
+		<div class="conts">
+			<div id="PassengerRegistration" class="tabcontent defaultOpen">
+				<form method="POST" action="/p" id="passng" class="frm">
+					{% csrf_token %}
+					<div class="form-group">
+						<div id="guests">
+							<div class="form-group guest">
+								<input type="text" class="form-control" id="usr" name="guest_0" placeholder="Guest Name:">
+							</div>
+						</div>
+						<a href="" id="newGuest">
+							<span class="glyphicon glyphicon-plus"></span>
+						</a>
+					</div>
+					<input type="hidden" name="nPas" id="nPas" value="1" />
+					<div class="form-group">
+						<label for="pickup">Type:</label>
+						<select class="form-control" id="share" name="share">
+							<option value="W">Share with splitting</option>
+							<option value="N">Share without splitting</option>
+							<option value="E">Exclusive</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="pickup">Pickup Location:</label>
+						<select class="form-control" id="pickup" name="pickup">
+							<option style="display:none">---</option>
+							{% for p in places %}
+							<option value="{{ p.p_id }}">{{ p.pName }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="dest">Destination Location:</label>
+						<select class="form-control" id="dest" name="dest">
+							<option style="display:none">---</option>
+							{% for p in places %}
+							<option value="{{ p.p_id }}">{{ p.pName }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="pTime">Pickup:</label>
+							<input type="datetime-local" id="pTime" name="pTime" placeholder="Ending Date" class="form-control"
+							 autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 button-holder">
+							<div class="ajax-button">
+								<div class="fa fa-check done"></div>
+								<div class="fa fa-close failed"></div>
+								<input id="submitBtn1" class="submitBtn1" type="button" value="Submit" />
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="Booking" class="tabcontent">
+			<div class="form-group">
+				<input type="text" class="form-control" id="usr" placeholder="Booking ID:" name="usr">
+			</div>
+		</div>
+
+		<div id="Cancellation" class="tabcontent">
+			<div class="form-group">
+				<input type="text" class="form-control" id="usr" name="usr" placeholder="Booking ID:">
+			</div>
+		</div>
+
+		<div id="Updation" class="tabcontent">
+			<h1>Updation</h1>
+			<p>Updation</p>
+		</div>
+
+		<div id="CarRegistration" class="tabcontent">
+			<form method="POST" action="/c" id="car" class="frm">
+			{% csrf_token %}
+			<div class="form-group">
+				<input type="text" class="form-control" id="cno" placeholder="Car Number:" name="cno">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" id="usr" placeholder="Driver Name:" name="usr">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" id="phn" pattern="^[0-9]{6}|[0-9]{8}|[0-9]{10}$" placeholder="Contact Number:"
+				 name="phn">
+			</div>
+			<div class="form-group">
+				<label for="seats">Number of seats</label>
+				<select class="form-control" id="seats" name="seats">
+					<option style="display:none">---</option>
+					<option value="4">4</option>
+					<option value="6">6</option>
+					<option value="8">8</option>
+				</select>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 button-holder">
+					<div class="ajax-button">
+						<div class="fa fa-check done"></div>
+						<div class="fa fa-close failed"></div>
+						<input id="submitBtn2" class="submitBtn2" type="button" value="Submit" />
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="{% static 'YAPS/js/index.js' %}"></script>
+</body>
+
+</html>
